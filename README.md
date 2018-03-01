@@ -13,16 +13,14 @@ Retail price is around $80 with cable
 ### Korg EC5 Cable Wiring
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/FootPedalKeyboardFirmware/Korg%20EC5%20Cable%20Schematic.png  "Korg EC5 Cable Wiring")
 
-Wiring mapping from Korg EC5 cable to Breadboard/PCB:
-KORG CABLE WIRE   PEDAL     SOLDERED WIRE
----------------   ------    -------------
-YELLOW            [GND]     BLACK
-BLACK             A         PURPLE 
-RED               B         ORANGE
-GREY              C         GREY
-GREEN             D         GREEN
-BLUE              E         BLUE
-
+Korg Pedal   | Korg Wire Color | Soldered Wire
+------------ | --------------- | -------------
+GND | Yellow | Black
+A | Black | Purple
+B | Red | Orange
+C | Grey | Grey
+D | Green | Green
+E | Blue | Blue
 
 ## Fritizing
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/FritizingScreenshot.png "foot pedal keyboard breadboard schematics")
