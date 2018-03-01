@@ -5,3 +5,10 @@ For example: If Pedal A is clicked (pressed and released) then the python driver
 
 ## Fritizing
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/FritizingScreenshot.png "foot pedal keyboard breadboard schematics")
+
+
+## Credits
+I took some direction and ideas from a similar project done by Sylvain Wallez:
+https://bluxte.net/musings/2016/07/29/usb-foot-keyboard/
+
+Thanks Sylvain!
