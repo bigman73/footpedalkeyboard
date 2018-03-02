@@ -7,23 +7,14 @@ For example: If Pedal A is clicked (pressed and released) then the python driver
 TBD - Youtube Video
 
 ## Korg EC5 Foot Pedal Board
-Retail price is around $80 with cable
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/ec5-b.jpg "Korg EC5 Foot Pedal Board")
-
-### Korg EC5 Cable Wiring
-![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/FootPedalKeyboardFirmware/Korg%20EC5%20Cable%20Schematic.png  "Korg EC5 Cable Wiring")
-
-Korg Pedal   | Korg Wire Color | Soldered Wire
------------- | --------------- | -------------
-GND | Yellow | Black
-A | Black | Purple
-B | Red | Orange
-C | Grey | Grey
-D | Green | Green
-E | Blue | Blue
 
 ## Fritizing
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/FritizingScreenshot.png "foot pedal keyboard breadboard schematics")
+
+## More information - In the wiki
+Bill Of Materials, Wiring Schematics
+https://github.com/bigman73/footpedalkeyboard/wiki
 
 ## Credits
 I took some direction and ideas from a similar project done by Sylvain Wallez:
