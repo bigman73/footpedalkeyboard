@@ -13,7 +13,7 @@ TBD - Youtube Video
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/FritizingScreenshot.png "foot pedal keyboard breadboard schematics")
 
 ## More information - In the wiki
-Bill Of Materials, Wiring Schematics
+Bill Of Materials, wiring schematics and other details: 
 https://github.com/bigman73/footpedalkeyboard/wiki
 
 ## Credits
