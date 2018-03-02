@@ -27,6 +27,7 @@ import serial
 from serial.tools import list_ports
 from pyautogui import press #, typewrite, hotkey
 import re
+from window_services import get_active_window
 
 DRIVER_VERSION = "0.0.1"
 
@@ -36,6 +37,8 @@ PRODUCT_ID = "0483"
 TEENSY_SIGNATURE = "USB VID:PID={0}:{1}".format(VENDOR_ID, PRODUCT_ID)
 
 event_regex = re.compile('Pedal\s([A-E])\s(pressed|released)')
+
+practicesharp_title_regex = re.compile('Practice# (\d*.\d*.\d*.\d*)')
 
 
 def getTeensyPort():
@@ -66,22 +69,27 @@ def process_footpedalkeyboard_event(event):
     m = event_regex.match(event)
     if m:
         pedal = m.group(1)
-        print("Pedal =", pedal)
+        # print("[DEBUG] Pedal =", pedal)
         action = m.group(2)
-        print("Action =", action)
+        # print("[DEBUG] Action =", action)
 
-        # TODO: Change with dynamic json map
-        if action == 'released':
-            if pedal == 'A':
-                press('l')
-            elif pedal == 'B':
-                press(',')
-            elif pedal == 'C':
-                press('space')
-            elif pedal == 'D':
-                press('s')
-            elif pedal == 'E':
-                press('f')
+        active_window_title = get_active_window()
+        print("Active window:", active_window_title)
+
+        if practicesharp_title_regex.match(active_window_title):
+            print(">> Practice# key mapping")
+            # TODO: Change with dynamic json map
+            if action == 'released':
+                if pedal == 'A':
+                    press('l')
+                elif pedal == 'B':
+                    press(',')
+                elif pedal == 'C':
+                    press('space')
+                elif pedal == 'D':
+                    press('s')
+                elif pedal == 'E':
+                    press('f')
 
 
 if __name__ == "__main__":
