@@ -29,19 +29,19 @@ SOFTWARE.
 // Teensy 3.x / Teensy LC have the LED on pin 13
 const int ledPin = 13;
 
-const int ledPedalAPin = 18;
-const int ledPedalBPin = 17;
-const int ledPedalCPin = 16;
-const int ledPedalDPin = 15;
-const int ledPedalEPin = 14;
+const int ledPedalAPin = 8;
+const int ledPedalBPin = 9;
+const int ledPedalCPin = 10;
+const int ledPedalDPin = 11;
+const int ledPedalEPin = 12;
 
 const int buttonPin = 17;
 
 const int pedalAPin = 23; // Purple
 const int pedalBPin = 22; // Orange
-const int pedalCPin = 21;
-const int pedalDPin = 20;
-const int pedalEPin = 19;
+const int pedalCPin = 21; // Grey
+const int pedalDPin = 20; // Green
+const int pedalEPin = 19; // Blue
 
 // Instantiate a Bounce object
 Bounce debouncerPedalA = Bounce();
@@ -121,23 +121,12 @@ void loop() {
     }
     startTime = millis();
   }
-    
- // buttonState = digitalRead(buttonPin);
-
-  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
- /* if (buttonState == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPedalAPin, HIGH); // TODO: Use another LED output 
-  } else {
-    // turn LED off:
-    digitalWrite(ledPedalAPin, LOW);
-  }*/
 
   handleButtonChange(debouncerPedalA, ledPedalAPin, "A");
-  handleButtonChange(debouncerPedalB, ledPedalAPin, "B"); // TODO: use the final 
-  handleButtonChange(debouncerPedalC, ledPedalAPin, "C");
-  handleButtonChange(debouncerPedalD, ledPedalAPin, "D");
-  handleButtonChange(debouncerPedalE, ledPedalAPin, "E");
+  handleButtonChange(debouncerPedalB, ledPedalBPin, "B");
+  handleButtonChange(debouncerPedalC, ledPedalCPin, "C");
+  handleButtonChange(debouncerPedalD, ledPedalDPin, "D");
+  handleButtonChange(debouncerPedalE, ledPedalEPin, "E");
   
   delay(25);
 }
