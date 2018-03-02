@@ -61,7 +61,7 @@ unsigned long elapsedTime;
 
 void setup() {
   Serial.begin(9600);  
-  Serial.println("-- FootPedalKeyboard, Version: 0.0.2 ---");
+  Serial.println("-- FootPedalKeyboard, Version: 0.0.3 ---");
 
   // initialize the digital pin as an output.
   pinMode(ledPin, OUTPUT);
@@ -103,12 +103,7 @@ void setup() {
 // as long as the board has power
 
 void loop() {
-  // Update the Bounce instances
-  debouncerPedalA.update();
-  debouncerPedalB.update();
-  debouncerPedalC.update();
-  debouncerPedalD.update();
-  debouncerPedalE.update();
+  updateDebouncers();
   
   elapsedTime = millis() - startTime;
 
@@ -122,13 +117,26 @@ void loop() {
     startTime = millis();
   }
 
+  handleButtonsChanges();
+  
+  delay(25);
+}
+
+void updateDebouncers() {
+  // Update the Bounce instances
+  debouncerPedalA.update();
+  debouncerPedalB.update();
+  debouncerPedalC.update();
+  debouncerPedalD.update();
+  debouncerPedalE.update();
+}
+
+void handleButtonsChanges() {
   handleButtonChange(debouncerPedalA, ledPedalAPin, "A");
   handleButtonChange(debouncerPedalB, ledPedalBPin, "B");
   handleButtonChange(debouncerPedalC, ledPedalCPin, "C");
   handleButtonChange(debouncerPedalD, ledPedalDPin, "D");
-  handleButtonChange(debouncerPedalE, ledPedalEPin, "E");
-  
-  delay(25);
+  handleButtonChange(debouncerPedalE, ledPedalEPin, "E");  
 }
 
 void handleButtonChange(Bounce debouncerPedal, int ledPedalPin, String pedalName) {
