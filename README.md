@@ -9,9 +9,6 @@ TBD - Youtube Video
 ## Korg EC5 Foot Pedal Board
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/ec5-b.jpg "Korg EC5 Foot Pedal Board")
 
-## Fritizing
-![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/FritizingScreenshot.png "foot pedal keyboard breadboard schematics")
-
 ## More information - In the wiki
 Bill Of Materials, wiring schematics and other details: 
 https://github.com/bigman73/footpedalkeyboard/wiki
