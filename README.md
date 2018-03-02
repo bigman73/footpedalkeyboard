@@ -6,7 +6,7 @@ For example: If Pedal A is clicked (pressed and released) then the python driver
 Origianlly, I wanted to be able to able to control [Practice#](https://github.com/bigman73/practicesharp), my open source practice application, with my feet - instead of getting out of practice position and having to use my hands in order control the application (especially I needed to pause/play and lookback).
 
 ## Korg EC5 Foot Pedal Board
-![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/ec5-b.jpg "Korg EC5 Foot Pedal Board")
+![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/ec5-b.jpg "Korg EC5 Foot Pedal Board")
 
 ## The final result
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/pedal-final.jpg "Used in 'production' :)")
