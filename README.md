@@ -7,8 +7,10 @@ For example: If Pedal A is clicked (pressed and released) then the python driver
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/fritzing/ec5-b.jpg "Korg EC5 Foot Pedal Board")
 
 ## The final result
-![alt text](https://github.com/bigman73/footpedalkeyboard/blob/master/images/pedal-final.jpg?raw=true "Used in 'production' :)")
+![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/pedal-final.jpg "Used in 'production' :)")
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/breadboard.jpg  "The breadboard solution")
+![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/python-driver-windows.png  "The FPK python driver running on Windows")
+
 
 TODO - Youtube Video
 
