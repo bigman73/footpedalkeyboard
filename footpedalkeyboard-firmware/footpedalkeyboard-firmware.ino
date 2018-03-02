@@ -61,7 +61,7 @@ unsigned long elapsedTime;
 
 void setup() {
   Serial.begin(9600);  
-  Serial.println("-- FootPedalKeyboard, Version: 0.01 ---");
+  Serial.println("-- FootPedalKeyboard, Version: 0.0.2 ---");
 
   // initialize the digital pin as an output.
   pinMode(ledPin, OUTPUT);
