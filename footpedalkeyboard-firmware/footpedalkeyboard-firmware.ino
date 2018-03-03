@@ -92,17 +92,7 @@ void setup() {
 void loop() {
   updateDebouncers();
   
-  elapsedTime = millis() - startTime;
-
-  if (elapsedTime > STATUS_LED_BLINK_TIME) {
-    ledState = 1 - ledState;
-    if (ledState) {
-      digitalWrite(ledPin, HIGH);   // set the LED on    
-    } else {
-      digitalWrite(ledPin, LOW);    // set the LED off
-    }
-    startTime = millis();
-  }
+  handleStatusLed();
 
   handleButtonsChanges();
   
@@ -158,6 +148,20 @@ void handleButtonsChanges() {
     int ledPedalPin = ledPedalPins[i];
     String pedal = (char)((int) 'A' + i);
     handleButtonChange(pPedalDebouncer, ledPedalPin, pedal);
+  }
+}
+
+void handleStatusLed() {
+  elapsedTime = millis() - startTime;
+
+  if (elapsedTime > STATUS_LED_BLINK_TIME) {
+    ledState = 1 - ledState;
+    if (ledState) {
+      digitalWrite(ledPin, HIGH);   // set the LED on    
+    } else {
+      digitalWrite(ledPin, LOW);    // set the LED off
+    }
+    startTime = millis();
   }
 }
 
