@@ -26,6 +26,8 @@ SOFTWARE.
 // https://github.com/thomasfredericks/Bounce2
 #include <Bounce2.h>
 
+const String FIRMWARE_VERSION = "0.0.3";
+
 // Teensy 3.x / Teensy LC have the LED on pin 13
 const int ledPin = 13;
 
@@ -35,13 +37,15 @@ const int ledPedalCPin = 10;
 const int ledPedalDPin = 11;
 const int ledPedalEPin = 12;
 
-const int buttonPin = 17;
+const int ledPedalPins[] = {ledPedalAPin, ledPedalBPin, ledPedalCPin, ledPedalDPin, ledPedalEPin};
 
 const int pedalAPin = 23; // Purple
 const int pedalBPin = 22; // Orange
 const int pedalCPin = 21; // Grey
 const int pedalDPin = 20; // Green
 const int pedalEPin = 19; // Blue
+
+const int inputPedalPins[] = {pedalAPin, pedalBPin, pedalCPin, pedalDPin, pedalEPin};
 
 // Instantiate a Bounce object
 Bounce debouncerPedalA = Bounce();
@@ -61,22 +65,14 @@ unsigned long elapsedTime;
 
 void setup() {
   Serial.begin(9600);  
-  Serial.println("-- FootPedalKeyboard, Version: 0.0.3 ---");
+  Serial.println("-- FootPedalKeyboard, Version: " + FIRMWARE_VERSION + "---");
 
   // initialize the digital pin as an output.
   pinMode(ledPin, OUTPUT);
-  pinMode(ledPedalAPin, OUTPUT);
-  pinMode(ledPedalBPin, OUTPUT);
-  pinMode(ledPedalCPin, OUTPUT);
-  pinMode(ledPedalDPin, OUTPUT);
-  pinMode(ledPedalEPin, OUTPUT);
 
-  pinMode(buttonPin, INPUT);
-  pinMode(pedalAPin, INPUT_PULLUP);
-  pinMode(pedalBPin, INPUT_PULLUP);
-  pinMode(pedalCPin, INPUT_PULLUP);
-  pinMode(pedalDPin, INPUT_PULLUP);
-  pinMode(pedalEPin, INPUT_PULLUP);
+  setupLedPedalPins();
+
+  setupPedalPins();
 
   // After setting up the button, setup the Bounce instance:
   debouncerPedalA.attach(pedalAPin);
@@ -90,11 +86,7 @@ void setup() {
   debouncerPedalE.attach(pedalEPin);
   debouncerPedalE.interval(5); // interval in ms
 
-  digitalWrite(ledPedalAPin, LOW);
-  digitalWrite(ledPedalBPin, LOW);
-  digitalWrite(ledPedalCPin, LOW);
-  digitalWrite(ledPedalDPin, LOW);
-  digitalWrite(ledPedalEPin, LOW);
+  startupTestRoutine();
   
   startTime = millis();
 }
@@ -120,6 +112,38 @@ void loop() {
   handleButtonsChanges();
   
   delay(25);
+}
+
+void setupLedPedalPins() {
+  for (int i = 0; i < (int) (sizeof(ledPedalPins) / sizeof(int)); i++) {
+    int ledPedalPin = ledPedalPins[i];
+    pinMode(ledPedalPin, OUTPUT);
+    digitalWrite(ledPedalPin, LOW);
+  }
+}
+
+void setupPedalPins() {
+  for (int i = 0; i < (int) (sizeof(inputPedalPins) / sizeof(int)); i++) {
+    int inputPedalPin = inputPedalPins[i];
+    pinMode(inputPedalPin, INPUT_PULLUP);
+  }
+}
+
+void startupTestRoutine() {
+  int i;
+  for (i = 0; i < (int) (sizeof(ledPedalPins) / sizeof(int)); i++) {
+    int ledPedalPin = ledPedalPins[i];
+    digitalWrite(ledPedalPin, HIGH);
+    delay(150);
+  }
+
+  delay(100);
+
+  for (i = (int) (sizeof(ledPedalPins) / sizeof(int) - 1); i >= 0; i--) {
+    int ledPedalPin = ledPedalPins[i];
+    digitalWrite(ledPedalPin, LOW);
+    delay(150);
+  }
 }
 
 void updateDebouncers() {
