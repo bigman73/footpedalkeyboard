@@ -30,6 +30,7 @@ const String FIRMWARE_VERSION = "0.0.3";
 
 // Teensy 3.x / Teensy LC have the LED on pin 13
 const int ledPin = 13;
+const int STATUS_LED_BLINK_TIME = 400; // msec
 
 const int ledPedalAPin = 8;
 const int ledPedalBPin = 9;
@@ -37,6 +38,7 @@ const int ledPedalCPin = 10;
 const int ledPedalDPin = 11;
 const int ledPedalEPin = 12;
 
+const int NUM_PEDALS = 5;
 const int ledPedalPins[] = {ledPedalAPin, ledPedalBPin, ledPedalCPin, ledPedalDPin, ledPedalEPin};
 
 const int pedalAPin = 23; // Purple
@@ -54,6 +56,8 @@ Bounce debouncerPedalC = Bounce();
 Bounce debouncerPedalD = Bounce();
 Bounce debouncerPedalE = Bounce();
 
+Bounce * pedalDebouncers[] = {&debouncerPedalA, &debouncerPedalB, &debouncerPedalC, &debouncerPedalD, &debouncerPedalE};
+
 int ledState = 0;
 int buttonState = 0;         // variable for reading the pushbutton status
 int pedalState = 0;         // variable for reading the pedal wire status
@@ -65,7 +69,8 @@ unsigned long elapsedTime;
 
 void setup() {
   Serial.begin(9600);  
-  Serial.println("-- FootPedalKeyboard, Version: " + FIRMWARE_VERSION + "---");
+  delay(25);
+  Serial.println("-- FootPedalKeyboard, Version: " + FIRMWARE_VERSION + " ---");
 
   // initialize the digital pin as an output.
   pinMode(ledPin, OUTPUT);
@@ -74,20 +79,10 @@ void setup() {
 
   setupPedalPins();
 
-  // After setting up the button, setup the Bounce instance:
-  debouncerPedalA.attach(pedalAPin);
-  debouncerPedalA.interval(5); // interval in ms
-  debouncerPedalB.attach(pedalBPin);
-  debouncerPedalB.interval(5); // interval in ms
-  debouncerPedalC.attach(pedalCPin);
-  debouncerPedalC.interval(5); // interval in ms
-  debouncerPedalD.attach(pedalDPin);
-  debouncerPedalD.interval(5); // interval in ms
-  debouncerPedalE.attach(pedalEPin);
-  debouncerPedalE.interval(5); // interval in ms
-
   startupTestRoutine();
-  
+
+  Serial.println("-- Status: Ready to roll!");
+
   startTime = millis();
 }
 
@@ -99,7 +94,7 @@ void loop() {
   
   elapsedTime = millis() - startTime;
 
-  if (elapsedTime > 400) {
+  if (elapsedTime > STATUS_LED_BLINK_TIME) {
     ledState = 1 - ledState;
     if (ledState) {
       digitalWrite(ledPin, HIGH);   // set the LED on    
@@ -123,15 +118,19 @@ void setupLedPedalPins() {
 }
 
 void setupPedalPins() {
-  for (int i = 0; i < (int) (sizeof(inputPedalPins) / sizeof(int)); i++) {
+  for (int i = 0; i < NUM_PEDALS; i++) {
     int inputPedalPin = inputPedalPins[i];
     pinMode(inputPedalPin, INPUT_PULLUP);
+
+    Bounce * pPedalDobouncer = pedalDebouncers[i];
+    pPedalDobouncer->attach(inputPedalPin);
+    pPedalDobouncer->interval(5); // interval in ms
   }
 }
 
 void startupTestRoutine() {
   int i;
-  for (i = 0; i < (int) (sizeof(ledPedalPins) / sizeof(int)); i++) {
+  for (i = 0; i < NUM_PEDALS; i++) {
     int ledPedalPin = ledPedalPins[i];
     digitalWrite(ledPedalPin, HIGH);
     delay(150);
@@ -139,7 +138,7 @@ void startupTestRoutine() {
 
   delay(100);
 
-  for (i = (int) (sizeof(ledPedalPins) / sizeof(int) - 1); i >= 0; i--) {
+  for (i = NUM_PEDALS; i >= 0; i--) {
     int ledPedalPin = ledPedalPins[i];
     digitalWrite(ledPedalPin, LOW);
     delay(150);
@@ -147,27 +146,26 @@ void startupTestRoutine() {
 }
 
 void updateDebouncers() {
-  // Update the Bounce instances
-  debouncerPedalA.update();
-  debouncerPedalB.update();
-  debouncerPedalC.update();
-  debouncerPedalD.update();
-  debouncerPedalE.update();
+   for (int i = 0; i < NUM_PEDALS; i++) {
+    Bounce * pPedalDebouncer = pedalDebouncers[i];
+    pPedalDebouncer->update();
+  }
 }
 
 void handleButtonsChanges() {
-  handleButtonChange(debouncerPedalA, ledPedalAPin, "A");
-  handleButtonChange(debouncerPedalB, ledPedalBPin, "B");
-  handleButtonChange(debouncerPedalC, ledPedalCPin, "C");
-  handleButtonChange(debouncerPedalD, ledPedalDPin, "D");
-  handleButtonChange(debouncerPedalE, ledPedalEPin, "E");  
+  for (int i = 0; i < NUM_PEDALS; i++) {
+    Bounce * pPedalDebouncer = pedalDebouncers[i];
+    int ledPedalPin = ledPedalPins[i];
+    String pedal = (char)((int) 'A' + i);
+    handleButtonChange(pPedalDebouncer, ledPedalPin, pedal);
+  }
 }
 
-void handleButtonChange(Bounce debouncerPedal, int ledPedalPin, String pedalName) {
-   if ( debouncerPedal.fell() ) {
+void handleButtonChange(Bounce * pDebouncerPedal, int ledPedalPin, String pedalName) {
+   if ( pDebouncerPedal->fell() ) {
      Serial.println("Pedal " + pedalName + " pressed");
      digitalWrite(ledPedalPin, HIGH);
-   } else if ( debouncerPedal.rose() ) {
+   } else if ( pDebouncerPedal->rose() ) {
      Serial.println("Pedal " + pedalName + " released");
      digitalWrite(ledPedalPin, LOW);
    }  
