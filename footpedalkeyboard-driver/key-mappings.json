@@ -1,0 +1,97 @@
+{"applications": [
+  {
+    "application_name": "practice#",
+    "window_title_regex": "Practice# (\\d*.\\d*.\\d*.\\d*)",
+
+    "mappings": {
+      "pedalA": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "l"
+          ]
+        }
+      },
+      "pedalB": {
+        "released": {
+          "type": "press",
+          "keys": [
+            ","
+          ]
+        }
+      },
+      "pedalC": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "space"
+          ]
+        }
+      },
+      "pedalD": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "s"
+          ]
+        }
+      },
+      "pedalE": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "f"
+          ]
+        }
+      }
+    }
+  },
+   {
+    "application_name": "Chrome",
+    "window_title_regex": ".* - Google Chrome",
+
+    "mappings": {
+      "pedalA": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "browserback"
+          ]
+        }
+      },
+      "pedalB": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "f5"
+          ]
+        }
+      },
+      "pedalC": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "f11"
+          ]
+        }
+      },
+      "pedalD": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "f12"
+          ]
+        }
+      },
+      "pedalE": {
+        "released": {
+          "type": "hotkey",
+          "keys": [
+            "ctrl", "w"
+          ]
+        }
+      }
+    }
+  }
+  ]
+}
