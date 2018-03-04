@@ -1,4 +1,4 @@
-Python installation requirements:
+#Python installation requirements
 
 1. pyserial - install:
 pip install pyserial
