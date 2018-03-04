@@ -6,41 +6,46 @@
     "mappings": {
       "pedalA": {
         "released": {
+          "description": "Loop back",
           "type": "press",
           "keys": [
-            "l"
+            "f3"
           ]
         }
       },
       "pedalB": {
         "released": {
+          "description": "Rewind a few seconds back",
           "type": "press",
           "keys": [
-            ","
+            "f4"
           ]
         }
       },
       "pedalC": {
         "released": {
+          "description": "Play/Pause",
           "type": "press",
           "keys": [
-            "space"
+            "f6"
           ]
         }
       },
       "pedalD": {
         "released": {
+          "description": "Slow down",
           "type": "press",
           "keys": [
-            "s"
+            "f7"
           ]
         }
       },
       "pedalE": {
         "released": {
+          "description": "Play faster",
           "type": "press",
           "keys": [
-            "f"
+            "f8"
           ]
         }
       }
