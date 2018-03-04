@@ -3,7 +3,7 @@ A foot pedal keyboard, using Korg EC5, Arduino and Python
 Converts pedal button events into operating system virtual keyboard sequences.
 For example: If Pedal A is clicked (pressed and released) then the python driver will generate a Media Prev keyboard stroke on the operating system. A musician can then control music playback by using his/her feet, a very natural way for musicians that use foot pedals for effects and volume control, when playing instruments such as guitar, bass guitar and keyboards.
 
-Origianlly, I wanted to be able to able to control [Practice#](https://github.com/bigman73/practicesharp), my open source practice application, with my feet - instead of getting out of practice position and having to use my hands in order control the application 
+Originally, I wanted to be able to able to control [Practice#](https://github.com/bigman73/practicesharp), my open source practice application, with my feet - instead of getting out of practice position and having to use my hands in order control the application 
 With Practice# the setup is as followes:
 + Pedal A -> Look back (key = l)
 + Pedal B -> Rewind a few seconds back (key = ,)
@@ -11,6 +11,7 @@ With Practice# the setup is as followes:
 + Pedal D -> Slow down (key = s)
 + Pedal E -> Speed up (key = f)
 
+But I decided to make a more generic solution. The python driver supoorts dynamic supports any desktop application through an easy to configure json file (key-mappings.json). The default configuration file contains Chrome mappings - a tab can be closed with Pedal E!  
 
 ## Korg EC5 Foot Pedal Board
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/ec5-b.jpg "Korg EC5 Foot Pedal Board")
