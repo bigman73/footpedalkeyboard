@@ -29,9 +29,8 @@ from pyautogui import press, keyDown, keyUp
 import re
 from window_services import get_active_window
 import json
-from pprint import pprint
 
-DRIVER_VERSION = "0.0.2"
+DRIVER_VERSION = "0.0.3"
 
 # Teensy USB serial microcontroller program id data:
 VENDOR_ID = "16C0"
@@ -117,6 +116,7 @@ def process_footpedalkeyboard_event(event):
                         press(keys)
                     elif instruction_type == 'hotkey':
                         keys = action_instructions['keys']
+                        print("Hot key:", keys)
                         for key in keys:
                             keyDown(key)
                         for key in keys:
