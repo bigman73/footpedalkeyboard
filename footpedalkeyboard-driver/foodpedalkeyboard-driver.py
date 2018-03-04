@@ -125,10 +125,8 @@ def process_footpedalkeyboard_event(event):
 
 def read_mapping_config_file():
     config_data = json.load(open('key-mappings.json'))
-    pprint(config_data)
 
     for application_config in config_data['applications']:
-        print(application_config)
         application_name = application_config['application_name']
         applications[application_name] = application_config
         window_title_regex = application_config['window_title_regex']
