@@ -25,12 +25,12 @@ SOFTWARE.
 import sys
 import serial
 from serial.tools import list_ports
-from pyautogui import press, keyDown, keyUp
+from pyautogui import press, keyDown, keyUp, typewrite
 import re
 from window_services import get_active_window
 import json
 
-DRIVER_VERSION = "0.0.3"
+DRIVER_VERSION = "0.0.4"
 
 # Teensy USB serial microcontroller program id data:
 VENDOR_ID = "16C0"
@@ -78,9 +78,7 @@ def process_footpedalkeyboard_event(event):
     m = event_regex.match(event)
     if m:
         pedal = m.group(1)
-        # print("[DEBUG] Pedal =", pedal)
         pedal_action = m.group(2)
-        # print("[DEBUG] Action =", action)
 
         active_window_title = get_active_window()
         print("Active window:", active_window_title)
@@ -121,6 +119,12 @@ def process_footpedalkeyboard_event(event):
                             keyDown(key)
                         for key in keys:
                             keyUp(key)
+                    elif instruction_type == 'typewrite':
+                        text = action_instructions['text']
+                        interval = action_instructions['interval']
+                        typewrite(text, interval)
+                            
+                        
 
 
 def read_mapping_config_file():
@@ -144,6 +148,6 @@ if __name__ == "__main__":
 
         listen_to_teensy_serial(_teensy_port)
     else:
-        print("No compatible Teensy found. Aborting.")
+        print("TOTAL FAIL NO WORKY: No compatible Teensy found. Aborting.")
 
     sys.exit(1)
