@@ -52,6 +52,7 @@
     }
   },
    {
+   
     "application_name": "Chrome",
     "window_title_regex": ".* - Google Chrome",
 
@@ -93,6 +94,52 @@
           "type": "hotkey",
           "keys": [
             "ctrl", "w"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "application_name": "NotepadTest",
+    "window_title_regex": ".* - Notepad",
+
+    "mappings": {
+      "pedalA": {
+        "pressed": {
+          "type": "typewrite",
+          "text": "Hello World!",
+		  "interval": 0.05
+        }
+      },
+      "pedalB": {
+        "pressed": {
+          "type": "press",
+          "keys": [
+            "B"
+          ]
+        }
+      },
+      "pedalC": {
+        "pressed": {
+          "type": "press",
+          "keys": [
+            "C"
+          ]
+        }
+      },
+      "pedalD": {
+        "pressed": {
+          "type": "press",
+          "keys": [
+            "D"
+          ]
+        }
+      },
+      "pedalE": {
+        "pressed": {
+          "type": "hotkey",
+          "keys": [
+            "E"
           ]
         }
       }
