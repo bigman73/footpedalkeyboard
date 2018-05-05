@@ -1,0 +1,26 @@
+Part/Wire|Breadboard From|Breadboard To
+================================================================
+Teensy LC|GND (bottom left corner, near port 0)|H63
+Teensy LC|Pin 13|D50
+GND Black Wire|A62|Top (-) Rail
+Korg EC5 Gnd Wire (black)|B62 (above GND top left, right of Vin)
+Korg EC5 A Wire (purple)|A61 (above port 23)
+Korg EC5 A Wire (orange)|B60 (above port 23)
+Korg EC5 A Wire (grey)|A59 (above port 23)
+Korg EC5 A Wire (green)|B58 (above port 23)
+Korg EC5 A Wire (blue)|A57 (above port 23)
+purple wire|J54 (below port 8)|E46
+ornage wire|J53 (below port 9)|E42
+grey wire|J52 (below port 10)|E36
+green wire|J51 (below port 11)|E32
+blue wire|J50 (below port 12)|E29
+LED A resistor 220 ohm|A46|C45
+LED B resistor 150 ohm|A42|C41
+LED C resistor 220 ohm|A36|C35
+LED D resistor 150 ohm|A32|C31
+LED E resistor 150 ohm|A29|C28
+LED A purple|A45|Top (-) rail
+LED B orange|A41|Top (-) rail
+LED C white|A35|Top (-) rail
+LED D green|A31|Top (-) rail
+LED E blue|A28|Top (-) rail
