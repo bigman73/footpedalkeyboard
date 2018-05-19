@@ -54,7 +54,7 @@
    {
    
     "application_name": "Chrome",
-    "window_title_regex": ".* - Google Chrome",
+    "window_title_regex": ".* - YouTube - Google Chrome",
 
     "mappings": {
       "pedalA": {
