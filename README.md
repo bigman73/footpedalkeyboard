@@ -22,8 +22,6 @@ But I decided to make a more generic solution. The python driver supoorts dynami
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/python-driver-windows.png  "The FPK python driver running on Windows")
 
 
-TODO - Youtube Video
-
 ## More information - In the wiki
 Bill Of Materials, wiring schematics and other details: 
 https://github.com/bigman73/footpedalkeyboard/wiki
