@@ -1,4 +1,4 @@
 #!/bin/bash 
 
-source activate py36_fpk
+source activate py37_fpk
 python footpedalkeyboard-driver.py
