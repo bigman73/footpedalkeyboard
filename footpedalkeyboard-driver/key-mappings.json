@@ -100,6 +100,53 @@
     }
   },
   {
+    "application_name": "Spotify",
+    "window_title_regex": "Spotify",
+
+    "mappings": {
+      "pedalA": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "home"
+          ]
+        }
+      },
+      "pedalB": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "left"
+          ]
+        }
+      },
+      "pedalC": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "space"
+          ]
+        }
+      },
+      "pedalD": {
+        "released": {
+          "type": "press",
+          "keys": [
+            "f11"
+          ]
+        }
+      },
+      "pedalE": {
+        "released": {
+          "type": "hotkey",
+          "keys": [
+            "ctrl", "w"
+          ]
+        }
+      }
+    }
+  },
+  {
     "application_name": "NotepadTest",
     "window_title_regex": ".* - Notepad",
 

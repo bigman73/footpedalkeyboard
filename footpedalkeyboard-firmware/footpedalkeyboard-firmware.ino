@@ -22,11 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 =============================================================================== */
 
-// Include the Bounce2 library found here :
-// https://github.com/thomasfredericks/Bounce2
 #include <Bounce2.h>
 
-const String FIRMWARE_VERSION = "0.0.3";
+const String FIRMWARE_VERSION = "0.0.4";
 
 // Teensy 3.x / Teensy LC have the LED on pin 13
 const int ledPin = 13;
@@ -64,13 +62,13 @@ int pedalState = 0;         // variable for reading the pedal wire status
 unsigned long startTime;
 unsigned long elapsedTime;
 
-
-// the setup() method runs once, when the sketch starts
-
+/*
+ * Initial setup - the setup() method runs once, when the sketch starts
+ */
 void setup() {
   Serial.begin(9600);  
   delay(25);
-  Serial.println("-- FootPedalKeyboard, Version: " + FIRMWARE_VERSION + " ---");
+  Serial.println("-- FootPedalKeyboard by bigman73, Version: " + FIRMWARE_VERSION + " ---");
 
   // initialize the digital pin as an output.
   pinMode(ledPin, OUTPUT);
@@ -81,24 +79,27 @@ void setup() {
 
   startupTestRoutine();
 
-  Serial.println("-- Status: Ready to roll!");
+  Serial.println("-- Status: ready!");
 
   startTime = millis();
 }
 
-// the loop() methor runs over and over again,
-// as long as the board has power
-
+/*
+ * Main loop - the loop() methor runs over and over again, as long as the board has power
+ */
 void loop() {
   updateDebouncers();
   
   handleStatusLed();
 
-  handleButtonsChanges();
+  handlePedalChanges();
   
   delay(25);
 }
 
+/*
+ * Setup the pedals LED output pin
+ */
 void setupLedPedalPins() {
   for (int i = 0; i < (int) (sizeof(ledPedalPins) / sizeof(int)); i++) {
     int ledPedalPin = ledPedalPins[i];
@@ -107,6 +108,9 @@ void setupLedPedalPins() {
   }
 }
 
+/*
+ * Setup the pedal pins as input with a debouncer
+ */
 void setupPedalPins() {
   for (int i = 0; i < NUM_PEDALS; i++) {
     int inputPedalPin = inputPedalPins[i];
@@ -118,6 +122,9 @@ void setupPedalPins() {
   }
 }
 
+/*
+ * Perform the initial startup self test routine that flashes the LEDs
+ */
 void startupTestRoutine() {
   int i;
   for (i = 0; i < NUM_PEDALS; i++) {
@@ -135,6 +142,9 @@ void startupTestRoutine() {
   }
 }
 
+/*
+ * Update and refresh the debouncers internal state
+ */
 void updateDebouncers() {
    for (int i = 0; i < NUM_PEDALS; i++) {
     Bounce * pPedalDebouncer = pedalDebouncers[i];
@@ -142,15 +152,35 @@ void updateDebouncers() {
   }
 }
 
-void handleButtonsChanges() {
+/*
+ * Handles state change for all pedals
+ */
+void handlePedalChanges() {
   for (int i = 0; i < NUM_PEDALS; i++) {
     Bounce * pPedalDebouncer = pedalDebouncers[i];
     int ledPedalPin = ledPedalPins[i];
-    String pedal = (char)((int) 'A' + i);
+    String pedal = String((char)((int) 'A' + i));
     handleButtonChange(pPedalDebouncer, ledPedalPin, pedal);
   }
 }
 
+/*
+ * Handles state changes for a given pedal
+ */
+void handleButtonChange(Bounce * pDebouncerPedal, int ledPedalPin, String pedalName) {
+   if ( pDebouncerPedal->fell() ) {
+     Serial.println("Pedal " + pedalName + " pressed");
+     digitalWrite(ledPedalPin, HIGH);
+   } else if ( pDebouncerPedal->rose() ) {
+     Serial.println("Pedal " + pedalName + " released");
+     digitalWrite(ledPedalPin, LOW);
+   }  
+}
+
+
+/*
+ * Handles the status LED - turns it off and on in cycles
+ */
 void handleStatusLed() {
   elapsedTime = millis() - startTime;
 
@@ -163,14 +193,4 @@ void handleStatusLed() {
     }
     startTime = millis();
   }
-}
-
-void handleButtonChange(Bounce * pDebouncerPedal, int ledPedalPin, String pedalName) {
-   if ( pDebouncerPedal->fell() ) {
-     Serial.println("Pedal " + pedalName + " pressed");
-     digitalWrite(ledPedalPin, HIGH);
-   } else if ( pDebouncerPedal->rose() ) {
-     Serial.println("Pedal " + pedalName + " released");
-     digitalWrite(ledPedalPin, LOW);
-   }  
 }
