@@ -21,6 +21,6 @@ https://www.pjrc.com/teensy/td_download.html
 2. Select 'Teensy LC'
 
 ## 4. Install bounce2 library
-Main menu / Tools / Manage Libraries...
+1. Main menu / Tools / Manage Libraries...
 >    As of November 2019 -> version 2.52.0
 
