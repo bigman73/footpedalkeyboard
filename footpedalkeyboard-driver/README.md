@@ -51,3 +51,9 @@ run.bat
 ```
 
 > This can be automated with a Windows task that runs on desktop login
+
+# Configure keyboard mapping
+Pedal to Keyboard mapping is done using the **key-mappings.json** configuration file.
+
+*pyautogui* module provides support for keyboard automation (programmatic keyboard actions).
+The different values are documented in the [reference page](https://pyautogui.readthedocs.io/en/latest/keyboard.html#keyboard-keys)
