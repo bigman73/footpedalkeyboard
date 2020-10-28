@@ -30,7 +30,7 @@ import re
 from window_services import get_active_window
 import json
 
-DRIVER_VERSION = "0.0.4"
+DRIVER_VERSION = "1.0.0"
 
 # Teensy USB serial microcontroller program id data:
 VENDOR_ID = "16C0"
