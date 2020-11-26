@@ -5,10 +5,10 @@ Teensy LC|Pin 13|D50
 GND Black Wire|A62|Top (-) Rail
 Korg EC5 Gnd Wire (black)|B62 (above GND top left, right of Vin)
 Korg EC5 A Wire (purple)|A61 (above port 23)
-Korg EC5 A Wire (orange)|B60 (above port 23)
-Korg EC5 A Wire (grey)|A59 (above port 23)
-Korg EC5 A Wire (green)|B58 (above port 23)
-Korg EC5 A Wire (blue)|A57 (above port 23)
+Korg EC5 B Wire (orange)|B60 (above port 23)
+Korg EC5 C Wire (grey)|A59 (above port 23)
+Korg EC5 D Wire (green)|B58 (above port 23)
+Korg EC5 E Wire (blue)|A57 (above port 23)
 purple wire|J54 (below port 8)|E46
 ornage wire|J53 (below port 9)|E42
 grey wire|J52 (below port 10)|E36
