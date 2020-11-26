@@ -1,5 +1,5 @@
-Part/Wire|Breadboard From|Breadboard To
-================================================================
+Part/Wire                |Breadboard From                      |Breadboard To
+============================================================================
 Teensy LC                |GND (bottom left corner, near port 0)|H63
 Teensy LC                |Pin 13                               |D50
 GND Black Wire           |A62                                  |Top (-) Rail
@@ -19,8 +19,8 @@ LED B resistor 150 ohm   |A42                                  |C41
 LED C resistor 220 ohm   |A36                                  |C35
 LED D resistor 150 ohm   |A32                                  |C31
 LED E resistor 150 ohm   |A29                                  |C28
-LED A purple             |A45|Top (-) rail
-LED B orange             |A41|Top (-) rail
-LED C white              |A35|Top (-) rail
-LED D green              |A31|Top (-) rail
-LED E blue               |A28|Top (-) rail
+LED A purple             |A45                                  |Top (-) rail
+LED B orange             |A41                                  |Top (-) rail
+LED C white              |A35                                  |Top (-) rail
+LED D green              |A31                                  |Top (-) rail
+LED E blue               |A28                                  |Top (-) rail
