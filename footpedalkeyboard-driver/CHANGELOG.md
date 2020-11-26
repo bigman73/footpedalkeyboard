@@ -2,7 +2,7 @@
 
 ## Versions
 
-1.1.0, 2020-11-25
+1.1.1, 2020-11-25
 - Fixed typo
 - Improved documentation
 
