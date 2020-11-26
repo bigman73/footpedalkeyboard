@@ -2,6 +2,9 @@
 
 ## Versions
 
+1.1.0, 2020-11-25
+- Fixed typo
+
 1.1.0, 2020-10-31
 - Added support for process name based active application matching
 - Fixed key mappings for Spotify to work on process name 

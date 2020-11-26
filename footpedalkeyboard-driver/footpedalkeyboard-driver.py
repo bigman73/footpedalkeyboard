@@ -34,7 +34,7 @@ import win32process
 import win32gui
 import time
 
-DRIVER_VERSION = "1.1.0"
+DRIVER_VERSION = "1.1.1"
 
 # Teensy USB serial microcontroller program id data:
 VENDOR_ID = "16C0"
@@ -173,10 +173,10 @@ def process_footpedalkeyboard_event(event):
                     break
 
         if matching_application:
-            apply_ppplication_keys(matching_application, pedal, pedal_action)
+            apply_application_keys(matching_application, pedal, pedal_action)
 
 
-def apply_ppplication_keys(matching_application, pedal, pedal_action):
+def apply_application_keys(matching_application, pedal, pedal_action):
     """
     Applies the matching applications keys to the operating system
     """
