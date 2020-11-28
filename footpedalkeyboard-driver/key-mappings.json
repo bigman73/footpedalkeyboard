@@ -101,7 +101,6 @@
     {
       "application_name": "Spotify",
       "process_name_regex": "Spotify.exe",
-
       "mappings": {
         "pedalA": {
           "released": {
@@ -239,7 +238,7 @@
               "ctrl",
               "alt",
               "right"
-             ]
+            ]
           }
         },
         "pedalE": {
@@ -248,6 +247,56 @@
             "type": "press",
             "keys": [
               "nexttrack"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "application_name": "Visual Studio Code",
+      "process_name_regex": "Code.exe",
+      "mappings": {
+        "pedalA": {
+          "released": {
+            "type": "hotkey",
+            "keys": [
+              "ctrl",
+              "shift",
+              "`"
+            ]
+          }
+        },
+        "pedalB": {
+          "released": {
+            "type": "hotkey",
+            "keys": [
+              "shift",
+              "left"
+            ]
+          }
+        },
+        "pedalC": {
+          "released": {
+            "type": "press",
+            "keys": [
+              "F5"
+            ]
+          }
+        },
+        "pedalD": {
+          "released": {
+            "type": "hotkey",
+            "keys": [
+              "f11"
+            ]
+          }
+        },
+        "pedalE": {
+          "released": {
+            "type": "hotkey",
+            "keys": [
+              "ctrl",
+              "right"
             ]
           }
         }

@@ -1,0 +1,7 @@
+.idea
+_pycache_
+pywin32*
+*.pyc
+tests/
+**/.vscode/.ropeproject/
+**/.vscode/settings.json
