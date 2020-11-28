@@ -7,6 +7,7 @@
 - Code cleanup, with pylint
 - Added mapping to VS Code
 - Shortened driver python file to driver.py
+- Updated conda dependencies
 
 1.1.1, 2020-11-25
 - Fixed typo
