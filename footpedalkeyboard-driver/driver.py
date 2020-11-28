@@ -23,18 +23,17 @@ SOFTWARE.
 =============================================================================== """
 
 import sys
+import re
+import json
 import serial
 from serial.tools import list_ports
 from pyautogui import press, keyDown, keyUp, typewrite
-import re
-from window_services import get_active_window
-import json
 import psutil
 import win32process
 import win32gui
-import time
+from window_services import get_active_window
 
-DRIVER_VERSION = "1.1.1"
+DRIVER_VERSION = "1.2.0"
 
 # Teensy USB serial microcontroller program id data:
 VENDOR_ID = "16C0"
@@ -100,6 +99,60 @@ def listen_to_teensy_serial(teensy_port):
             print()
 
 
+def match_application_by_window_title(window_title):
+    """
+    Finds a matching application by a given window title
+    """
+
+    matching_application = None
+
+    for application_name, application in applications.items():
+        # Only process applications that have a regular expression
+        if not 'window_title_compiled_regex' in application:
+            continue
+
+        window_title_compiled_regex = application['window_title_compiled_regex']
+        if window_title_compiled_regex.match(window_title):
+            print("Found a matching application by window title =>",
+                  application_name)
+            matching_application = application
+
+            # Add to cache for next time
+            if title_application_mapping_cache.__len__() > MAX_CACHE_SIZE:
+                title_application_mapping_cache.clear()
+            title_application_mapping_cache[window_title] = application['application_name']
+            break
+
+    return matching_application
+
+
+def match_application_by_process_name(window_process_name):
+    """
+       Finds a matching application by a given window process name
+    """
+
+    matching_application = None
+
+    for application_name, application in applications.items():
+        # Only process applications that have a regular expression
+        if not 'process_name_compiled_regex' in application:
+            continue
+
+        process_name_compiled_regex = application['process_name_compiled_regex']
+        if process_name_compiled_regex.match(window_process_name):
+            print("Found a matching application by process name =>",
+                  application_name)
+            matching_application = application
+
+            # Add to cache for next time
+            if process_application_mapping_cache.__len__() > MAX_CACHE_SIZE:
+                process_application_mapping_cache.clear()
+            process_application_mapping_cache[window_process_name] = application['application_name']
+            break
+
+    return matching_application
+
+
 def process_footpedalkeyboard_event(event):
     """
     Processes an event coming from the foot pedal keyboard
@@ -107,10 +160,10 @@ def process_footpedalkeyboard_event(event):
 
     print("RECEIVED KEYBOARD EVENT: " + event)
 
-    matchingEvent = event_regex.match(event)
-    if matchingEvent:
-        pedal = matchingEvent.group(1)
-        pedal_action = matchingEvent.group(2)
+    matching_event = event_regex.match(event)
+    if matching_event:
+        pedal = matching_event.group(1)
+        pedal_action = matching_event.group(2)
 
         active_window_title = get_active_window()
         print("Active window:", active_window_title)
@@ -140,37 +193,13 @@ def process_footpedalkeyboard_event(event):
 
         # Match application by active window's title
         if not matching_application:
-            for application_name, application in applications.items():
-                if not 'window_title_compiled_regex' in application:
-                    continue
-
-                window_title_compiled_regex = application['window_title_compiled_regex']
-                if window_title_compiled_regex.match(active_window_title):
-                    print("Found a matching application by window title =>",
-                          application_name)
-                    matching_application = application
-                    # Add to cache for next time
-                    if title_application_mapping_cache.__len__() > MAX_CACHE_SIZE:
-                        title_application_mapping_cache.clear()
-                    title_application_mapping_cache[active_window_title] = application['application_name']
-                    break
+            matching_application = match_application_by_window_title(
+                active_window_title)
 
         # Match application by active window's process name
         if not matching_application:
-            for application_name, application in applications.items():
-                if not 'process_name_compiled_regex' in application:
-                    continue
-
-                process_name_compiled_regex = application['process_name_compiled_regex']
-                if process_name_compiled_regex.match(active_window_process_name):
-                    print("Found a matching application by process name =>",
-                          application_name)
-                    matching_application = application
-                    # Add to cache for next time
-                    if process_application_mapping_cache.__len__() > MAX_CACHE_SIZE:
-                        process_application_mapping_cache.clear()
-                    process_application_mapping_cache[active_window_process_name] = application['application_name']
-                    break
+            matching_application = match_application_by_process_name(
+                active_window_process_name)
 
         if matching_application:
             apply_application_keys(matching_application, pedal, pedal_action)

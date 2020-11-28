@@ -2,6 +2,12 @@
 
 ## Versions
 
+1.2.0, 2020-11-28
+- Code refactoring
+- Code cleanup, with pylint
+- Added mapping to VS Code
+- Shortened driver python file to driver.py
+
 1.1.1, 2020-11-25
 - Fixed typo
 - Improved documentation

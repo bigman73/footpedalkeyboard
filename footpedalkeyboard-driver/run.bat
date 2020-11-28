@@ -6,4 +6,4 @@ ECHO Activating Conda environment: py37_fpk
 call activate py37_fpk
 
 ECHO Executing the FPK Python Driver
-python footpedalkeyboard-driver.py
+python driver.py
