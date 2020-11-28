@@ -2,7 +2,6 @@
 _pycache_
 pywin32*
 *.pyc
-.vscode/settings.json
 tests/
 **/.vscode/.ropeproject/
 **/.vscode/settings.json
