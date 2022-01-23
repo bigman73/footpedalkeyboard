@@ -3,7 +3,6 @@ Prior to compiling and upload the firmware some preparation steps are needed
 
 ## 1. Install Arduino IDE
 1. Download and install Arduino IDE
-
 https://www.arduino.cc/en/Main/Software
 
 >    As of January 2022-> version 1.8.19
@@ -14,8 +13,8 @@ https://www.pjrc.com/teensy/td_download.html
 
 > As of January 2022 -> version 1.56
 
-2. Select the Arudino IDE folder (from step 1) as target folder
-3. Unselect all libraries
+2. Select the Arudino IDE folder (from step 1) as the target folder
+3. Unselect all libraries (select None)
 4. Install
 
 ## 3. Select Teensy LC Board
