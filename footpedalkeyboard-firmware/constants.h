@@ -15,6 +15,7 @@ const int LED_PEDAL_PIN_E = 12;
 const int NUM_PEDALS = 5;
 const int ledPedalPins[] = {LED_PEDAL_PIN_A, LED_PEDAL_PIN_B, LED_PEDAL_PIN_C, LED_PEDAL_PIN_D, LED_PEDAL_PIN_E};
 
+// See README.md of firmware for Korg EC-5 cable pins mapping
 const int INPUT_PEDAL_PIN_A = 23; // Purple
 const int INPUT_PEDAL_PIN_B = 22; // Orange
 const int INPUT_PEDAL_PIN_C = 21; // Grey
