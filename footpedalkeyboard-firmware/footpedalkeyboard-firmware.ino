@@ -23,29 +23,7 @@ SOFTWARE.
 =============================================================================== */
 
 #include <Bounce2.h>
-
-const String FIRMWARE_VERSION = "0.0.4";
-
-// Teensy 3.x / Teensy LC have the LED on pin 13
-const int ledPin = 13;
-const int STATUS_LED_BLINK_TIME = 400; // msec
-
-const int ledPedalAPin = 8;
-const int ledPedalBPin = 9;
-const int ledPedalCPin = 10;
-const int ledPedalDPin = 11;
-const int ledPedalEPin = 12;
-
-const int NUM_PEDALS = 5;
-const int ledPedalPins[] = {ledPedalAPin, ledPedalBPin, ledPedalCPin, ledPedalDPin, ledPedalEPin};
-
-const int pedalAPin = 23; // Purple
-const int pedalBPin = 22; // Orange
-const int pedalCPin = 21; // Grey
-const int pedalDPin = 20; // Green
-const int pedalEPin = 19; // Blue
-
-const int inputPedalPins[] = {pedalAPin, pedalBPin, pedalCPin, pedalDPin, pedalEPin};
+#include "constants.h"
 
 // Instantiate a Bounce object
 Bounce debouncerPedalA = Bounce();
@@ -66,16 +44,15 @@ unsigned long elapsedTime;
  * Initial setup - the setup() method runs once, when the sketch starts
  */
 void setup() {
-  Serial.begin(9600);  
+  Serial.begin(SERIAL_DATA_RATE);  
   delay(25);
   Serial.println("-- FootPedalKeyboard by bigman73, Version: " + FIRMWARE_VERSION + " ---");
 
   // initialize the digital pin as an output.
-  pinMode(ledPin, OUTPUT);
+  pinMode(MAIN_LED_PEN, OUTPUT);
 
-  setupLedPedalPins();
-
-  setupPedalPins();
+  setupLedPedalOutputPins();
+  setupPedalInputPins();
 
   startupTestRoutine();
 
@@ -98,9 +75,9 @@ void loop() {
 }
 
 /*
- * Setup the pedals LED output pin
+ * Setup the pedals LED pins as output
  */
-void setupLedPedalPins() {
+void setupLedPedalOutputPins() {
   for (int i = 0; i < (int) (sizeof(ledPedalPins) / sizeof(int)); i++) {
     int ledPedalPin = ledPedalPins[i];
     pinMode(ledPedalPin, OUTPUT);
@@ -111,7 +88,7 @@ void setupLedPedalPins() {
 /*
  * Setup the pedal pins as input with a debouncer
  */
-void setupPedalPins() {
+void setupPedalInputPins() {
   for (int i = 0; i < NUM_PEDALS; i++) {
     int inputPedalPin = inputPedalPins[i];
     pinMode(inputPedalPin, INPUT_PULLUP);
@@ -130,7 +107,7 @@ void startupTestRoutine() {
   for (i = 0; i < NUM_PEDALS; i++) {
     int ledPedalPin = ledPedalPins[i];
     digitalWrite(ledPedalPin, HIGH);
-    delay(150);
+    delay(STARTUP_TEST_DELAY);
   }
 
   delay(100);
@@ -138,7 +115,7 @@ void startupTestRoutine() {
   for (i = NUM_PEDALS; i >= 0; i--) {
     int ledPedalPin = ledPedalPins[i];
     digitalWrite(ledPedalPin, LOW);
-    delay(150);
+    delay(STARTUP_TEST_DELAY);
   }
 }
 
@@ -187,9 +164,9 @@ void handleStatusLed() {
   if (elapsedTime > STATUS_LED_BLINK_TIME) {
     ledState = 1 - ledState;
     if (ledState) {
-      digitalWrite(ledPin, HIGH);   // set the LED on    
+      digitalWrite(MAIN_LED_PEN, HIGH);   // set the LED on    
     } else {
-      digitalWrite(ledPin, LOW);    // set the LED off
+      digitalWrite(MAIN_LED_PEN, LOW);    // set the LED off
     }
     startTime = millis();
   }
