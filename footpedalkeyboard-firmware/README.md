@@ -25,16 +25,18 @@ https://www.pjrc.com/teensy/td_download.html
 >    As of November 2019 -> version 2.52.0
 
 # Hardware Configuration
-## Korg EC5
+## Korg EC-5
+[Korg EC-5 External Controller - Product page](https://www.korg.com/us/products/accessories/ec_5/)
+
 ### Top View
-https://www.korg.com/us/products/accessories/ec_5/
-![Korg EC5, top](https://cdn.korg.com/us/products/upload/f9cf3880d4089be89e24affb28709f1e_sp.png)
+
+![Korg EC-5, top](https://cdn.korg.com/us/products/upload/f9cf3880d4089be89e24affb28709f1e_sp.png)
 ### Rear View
 The modified MIDI cable connects to the port in the rear
-![Korg EC5, rear](https://cdn.korg.com/us/products/upload/fbc20c8fcf343468972121e170d7142b_sp.png)
+![Korg EC-5, rear](https://cdn.korg.com/us/products/upload/fbc20c8fcf343468972121e170d7142b_sp.png)
 
 
-## Wiring Korg EC5 Pins
+## Wiring Korg EC-5 Pins
 | KORG CABLE WIRE | PEDAL         | SOLDERED WIRE |
 |-----------------|:-------------:|--------------:|
 | Yellow       🟨 |  [GND]       | Black    ⬛   |
