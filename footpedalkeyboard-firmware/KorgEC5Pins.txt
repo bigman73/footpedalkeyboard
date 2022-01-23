@@ -1,8 +1,0 @@
-KORG CABLE WIRE   PEDAL     SOLDERED WIRE
----------------   ------    -------------
-YELLOW            [GND]     BLACK
-BLACK             A         PURPLE 
-RED               B         ORANGE
-GREY              C         GREY
-GREEN             D         GREEN
-BLUE              E         BLUE
