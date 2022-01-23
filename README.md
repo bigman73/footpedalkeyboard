@@ -26,6 +26,10 @@ With Practice# the setup is as followes:
 
 But I decided to make a more generic solution. The python driver supoorts dynamic supports any desktop application through an easy to configure json file (key-mappings.json). The default configuration file contains Chrome mappings - a tab can be closed with Pedal E!  
 
+### Video games
+A foot keyboard can provide extra keys to use in games such as first person shooters (FPS).
+For example: Pedal A could be assigned to a `crouch` action, or to a series of keyboard actions that would be executed in sequence
+
 ## Korg EC5 Foot Pedal Board
 ![alt text](https://raw.githubusercontent.com/bigman73/footpedalkeyboard/master/images/ec5-b.jpg "Korg EC5 Foot Pedal Board")
 
